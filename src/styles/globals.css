@@ -11,12 +11,14 @@
 	body {
 		background-color: #fffbf0;
 		overflow-x: clip;
-		/* More refined snap behavior - proximity allows smoother free scrolling */
-		scroll-snap-type: y proximity;
+		/* Mandatory snap for seamless section transitions */
+		scroll-snap-type: y mandatory;
 		/* Enable smooth momentum scrolling on all devices */
 		-webkit-overflow-scrolling: touch;
 		/* Improve scrolling performance */
 		overscroll-behavior-y: none;
+		/* Ensure body takes full height */
+		min-height: 100vh;
 	}
 
 	/* Mobile-specific stricter scroll behavior */
@@ -100,21 +102,18 @@
 	}
 
 	main[data-main-shell] {
-		padding-top: calc(var(--header-height) + 0.75rem);
-	}
-
-	@media (min-width: 48rem) {
-		main[data-main-shell] {
-			padding-top: calc(var(--header-height) + 1rem);
-		}
+		padding-top: 0;
 	}
 
 	.section-block {
 		position: sticky;
 		top: var(--header-height, 3.5rem);
 		width: 100vw;
-		height: calc(100svh - var(--header-height, 3.5rem));
-		min-height: calc(100svh - var(--header-height, 3.5rem));
+		/* Each section takes exactly one viewport height in document flow for proper spacing */
+		height: 100vh;
+		min-height: 100vh;
+		/* Sticky viewport height - section reveals from bottom */
+		--section-viewport-height: calc(100vh - var(--header-height, 3.5rem));
 		margin-inline: calc(50% - 50vw);
 		margin-block: 0;
 		box-sizing: border-box;
@@ -122,33 +121,25 @@
 		align-items: center;
 		padding-block: clamp(3.25rem, 6vw, 5.5rem);
 		padding-inline: clamp(1.5rem, 6vw, 4rem);
-		overflow-y: auto;
-		overflow-x: hidden;
-		/* Softer snap alignment for smoother scrolling */
+		overflow: hidden;
+		/* Ensure proper snap alignment at the start of each section */
 		scroll-snap-align: start;
-		scroll-snap-stop: normal;
-		/* Enhanced smooth scrolling within sections */
-		-webkit-overflow-scrolling: touch;
+		scroll-snap-stop: always;
 		/* GPU acceleration for smoother rendering */
 		transform: translateZ(0);
 		backface-visibility: hidden;
-		/* Smoother transition between sections */
-		transition: opacity 0.3s ease-out;
+		/* Account for header offset */
+		scroll-margin-top: var(--header-height, 3.5rem);
 	}
 
-	/* Mobile-specific section behavior - stricter snapping */
-	@media (max-width: 47.99rem) and (hover: none) {
-		.section-block {
-			scroll-snap-stop: always;
-			/* Prevent momentum scroll from skipping sections */
-			overscroll-behavior-y: contain;
-			overscroll-behavior-x: none;
-			/* Ensure sections are isolated */
-			isolation: isolate;
-			/* Strict positioning */
-			position: -webkit-sticky;
-			position: sticky;
-		}
+	/* Ensure sections stack properly with no gaps */
+	.section-block + .section-block {
+		margin-top: 0;
+	}
+
+	/* Footer should also snap if it's tall enough */
+	footer {
+		scroll-snap-align: start;
 	}
 
 	.section-block[data-align="top"] {
