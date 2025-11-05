@@ -1,0 +1,324 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import cloudMerinoImage from "../assets/divazus-fabric-store-n29rGnbTid4-unsplash.jpg";
+import cashmereImage from "../assets/victor-volkov-memVwP598cA-unsplash.jpg";
+import indigoCottonImage from "../assets/tuti-fruti-cahyadi-N1pRScREWus-unsplash.jpg";
+import linenChambrayImage from "../assets/gabriella-clare-marino-PG9y_oQ5nkM-unsplash.jpg";
+import banarasiImage from "../assets/victor-volkov-kwpJY3RbObo-unsplash.jpg";
+import organzaImage from "../assets/moonstarious-project-R2Z3xE7nsB8-unsplash.jpg";
+import zardoziImage from "../assets/ekaterina-grosheva-wgRD0Lfe43Q-unsplash.jpg";
+import sequinImage from "../assets/ekaterina-grosheva-c6D1r0ail8o-unsplash.jpg";
+import jacquardImage from "../assets/moonstarious-project-_pIg9_Swzl8-unsplash.jpg";
+import satinImage from "../assets/ekaterina-grosheva-Htzlqefo8Rg-unsplash.jpg";
+
+const categories = [
+  { id: "sweaters", name: "Sweaters", description: "Merino, cashmere, alpaca blends.", accent: "bg-[#ccd5ae]" },
+  { id: "casuals", name: "Casuals", description: "Handloom cottons and breathable linens.", accent: "bg-[#e9edc9]" },
+  { id: "traditionals", name: "Traditionals", description: "Banarasi, brocade, silk organza.", accent: "bg-[#faedcd]" },
+  { id: "embroidery", name: "Embroidery", description: "Zardozi, sequin, beadwork panels.", accent: "bg-[#fefae0]" },
+  { id: "seasonal", name: "Seasonal", description: "Limited edition jacquards and prints.", accent: "bg-[#d4a373]/20" },
+];
+
+const products = [
+  {
+    name: "Cloud Merino Knit",
+    category: "sweaters",
+    color: "Dusty Rose",
+    content: "Extra-fine merino with a touch of elastane for resilient drape. Ideal for knit dresses and cardigans.",
+    image: cloudMerinoImage,
+    alt: "Dusty rose merino knit fabric draped on a table.",
+    tags: ["merino", "lightweight", "sweater"],
+    grams: "210 GSM",
+  },
+  {
+    name: "Cashmere Loft Weave",
+    category: "sweaters",
+    color: "Ecru",
+    content: "Double-face cashmere blend with brushed finish. Perfect for premium outerwear.",
+    image: cashmereImage,
+    alt: "Neutral cashmere fabrics folded in layers.",
+    tags: ["cashmere", "outerwear", "luxury"],
+    grams: "320 GSM",
+  },
+  {
+    name: "Handloom Indigo Cotton",
+    category: "casuals",
+    color: "Deep Indigo",
+    content: "Heritage loom slub cotton sustainably dyed with natural indigo vats.",
+    image: indigoCottonImage,
+    alt: "Bundle of indigo-dyed cotton fabric rolls.",
+    tags: ["cotton", "casual", "sustainable"],
+    grams: "180 GSM",
+  },
+  {
+    name: "Breeze Linen Chambray",
+    category: "casuals",
+    color: "Seafoam",
+    content: "Belgian flax woven with cotton for breathable, wrinkle-friendly shirting.",
+    image: linenChambrayImage,
+    alt: "Lightweight linen fabrics in cool tones hanging in a rack.",
+    tags: ["linen", "shirting", "breathable"],
+    grams: "160 GSM",
+  },
+  {
+    name: "Banarasi Zari Brocade",
+    category: "traditionals",
+    color: "Crimson Gold",
+    content: "Handloom Banarasi silk with antique zari, perfect for bridal lehengas and couture gowns.",
+    image: banarasiImage,
+    alt: "Vibrant Banarasi brocade fabric showcasing metallic motifs.",
+    tags: ["silk", "bridal", "heritage"],
+    grams: "240 GSM",
+  },
+  {
+    name: "Organza Shimmer Veil",
+    category: "traditionals",
+    color: "Champagne",
+    content: "Sheer silk organza with metallic sheen. Lightweight, structured drape.",
+    image: organzaImage,
+    alt: "Sheer champagne organza fabric catching the light.",
+    tags: ["organza", "lightweight", "evening"],
+    grams: "90 GSM",
+  },
+  {
+    name: "Celestial Zardozi Panel",
+    category: "embroidery",
+    color: "Midnight",
+    content: "Hand-embroidered zardozi on georgette base with glass beads and sequins.",
+    image: zardoziImage,
+    alt: "Detailed zardozi embroidery with metallic embellishments.",
+    tags: ["embroidery", "bridal", "panel"],
+    grams: "Handcrafted",
+  },
+  {
+    name: "Aurora Sequin Tulle",
+    category: "embroidery",
+    color: "Iridescent",
+    content: "Gradient sequin clusters on stretch tulle for occasion wear.",
+    image: sequinImage,
+    alt: "Iridescent sequins scattered across sheer tulle.",
+    tags: ["sequins", "tulle", "occasion"],
+    grams: "Lightweight",
+  },
+  {
+    name: "Autumn Jacquard",
+    category: "seasonal",
+    color: "Copper",
+    content: "Limited-run jacquard inspired by foliage motifs with matte gold thread highlights.",
+    image: jacquardImage,
+    alt: "Warm-toned jacquard fabric with botanical motifs.",
+    tags: ["jacquard", "limited", "fall"],
+    grams: "220 GSM",
+  },
+  {
+    name: "Studio Print Satin",
+    category: "seasonal",
+    color: "Monochrome",
+    content: "Digital print satin featuring architectural line work in a monochrome palette.",
+    image: satinImage,
+    alt: "Monochrome printed satin fabric draped softly.",
+    tags: ["print", "satin", "capsule"],
+    grams: "130 GSM",
+  },
+];
+---
+
+<Layout
+  title="Fabric Catalogue | Sweaters, Casuals, Traditionals, Embroidery"
+  description="Browse Fabric Loom’s curated catalogue. Filter by occasion, texture, and technique, or search for specific textiles."
+>
+  <section class="section-block bg-[#fefae0]" data-animate data-align="top">
+    <div class="section-content md:grid-cols-[1.05fr_0.95fr] md:items-start">
+      <div class="space-y-4 max-w-2xl">
+        <h1 class="text-4xl font-semibold text-slate-900">Fabric catalogue</h1>
+        <p class="max-w-2xl text-sm text-slate-700">
+          Filter by collection, search specific weaves, or request personalised sourcing support. Yardage, lead times, and pricing available on request.
+        </p>
+      </div>
+  <div id="filters" class="grid gap-4 rounded-3xl bg-white/80 p-6 backdrop-blur md:max-w-xl md:justify-self-end">
+        <label class="block text-sm font-medium text-slate-600">
+          <span class="flex items-center gap-2 text-xs font-semibold uppercase tracking-wide text-slate-500">
+            Search textiles
+          </span>
+          <input
+            id="productSearch"
+            type="search"
+            placeholder="Try cashmere, bridal silk, or jacquard"
+            class="mt-2 w-full rounded-full border border-[#e9edc9] bg-[#fefae0]/70 px-5 py-3 text-sm text-slate-700 placeholder:text-slate-400 focus:border-[#d4a373] focus:outline-none focus:ring-2 focus:ring-[#d4a373]/40"
+          />
+        </label>
+        <div class="flex flex-wrap gap-3 text-xs font-semibold uppercase tracking-wide text-slate-500">
+          <span>Popular filters:</span>
+          <button
+            data-filter="luxury"
+            class="rounded-full border border-[#d4a373] px-4 py-2 text-xs text-[#d4a373] transition hover:bg-[#faedcd]"
+          >
+            Luxury
+          </button>
+          <button
+            data-filter="sustainable"
+            class="rounded-full border border-[#d4a373] px-4 py-2 text-xs text-[#d4a373] transition hover:bg-[#faedcd]"
+          >
+            Sustainable
+          </button>
+          <button
+            data-filter="lightweight"
+            class="rounded-full border border-[#d4a373] px-4 py-2 text-xs text-[#d4a373] transition hover:bg-[#faedcd]"
+          >
+            Lightweight
+          </button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block bg-white" data-animate data-align="top">
+    <div class="section-content">
+      <div class="space-y-3">
+        <h2 class="text-2xl font-semibold text-slate-900">Categories</h2>
+        <p class="text-sm text-slate-600">Jump to curated edits across signature fabric families.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {categories.map((category) => (
+          <a
+            id={`category-${category.id}`}
+            href={`#category-${category.id}-list`}
+            class={`rounded-full border border-[#e9edc9] px-6 py-4 text-sm font-semibold uppercase tracking-wide text-slate-600 transition hover:-translate-y-1 hover:shadow ${category.accent}`}
+          >
+            {category.name}
+          </a>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block bg-white" data-animate data-align="top">
+    <div class="section-content">
+      <div class="flex flex-wrap items-center justify-between gap-4">
+        <h2 class="text-2xl font-semibold text-slate-900">Featured textiles</h2>
+        <span id="productCount" class="rounded-full bg-[#e9edc9] px-4 py-2 text-xs font-semibold uppercase tracking-wide text-slate-600">
+          {products.length} fabrics curated
+        </span>
+      </div>
+      <div id="productGrid" class="grid gap-10 md:grid-cols-2">
+        {products.map((product) => (
+          <article class="flex flex-col gap-5" data-category={product.category} data-tags={product.tags.join(" ")}>
+            <div class="relative h-56 overflow-hidden rounded-3xl">
+              <Image
+                src={product.image}
+                alt={product.alt}
+                widths={[480, 720, 960, 1280]}
+                sizes="(min-width: 1024px) 45vw, (min-width: 768px) 48vw, 90vw"
+                class="h-full w-full object-cover transition duration-700 hover:scale-105"
+                loading="lazy"
+                decoding="async"
+                fit="cover"
+              />
+              <div class="absolute right-4 top-4 rounded-full bg-white/80 px-3 py-1 text-xs font-semibold uppercase tracking-wide text-slate-600">
+                {product.grams}
+              </div>
+            </div>
+            <div class="flex flex-1 flex-col gap-4">
+              <header class="space-y-1">
+                <p class="text-xs font-semibold uppercase tracking-wide text-[#d4a373]">{product.category}</p>
+                <h3 class="text-lg font-semibold text-slate-900">{product.name}</h3>
+              </header>
+              <p class="text-sm leading-relaxed text-slate-600">{product.content}</p>
+              <div class="flex flex-wrap gap-2">
+                <span class="rounded-full bg-[#fefae0] px-3 py-1 text-xs font-semibold text-slate-600">{product.color}</span>
+                {product.tags.map((tag) => (
+                  <span class="rounded-full bg-[#e9edc9] px-3 py-1 text-xs font-medium text-slate-600" data-tag={tag}>
+                    {tag}
+                  </span>
+                ))}
+              </div>
+              <a href="/contact#consult" class="inline-flex items-center gap-2 text-sm font-semibold text-[#d4a373] transition hover:text-[#c68d58]">
+                Request swatch card
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block bg-[#d4a373] text-[#fefae0]" data-animate>
+    <div class="section-content items-center text-center">
+      <h2 class="text-2xl font-semibold">Need bespoke development?</h2>
+      <p class="max-w-2xl text-sm text-[#fefae0]/80">
+        Share texture inspiration, colour palettes, and target price points. Our design lab will compile a tailored fabric deck with delivery timelines.
+      </p>
+      <div class="flex flex-wrap justify-center gap-4">
+        <a href="/contact#consult" class="inline-flex items-center gap-2 rounded-full bg-[#fefae0] px-6 py-3 text-sm font-semibold text-[#8d6a43] transition hover:bg-[#faedcd]">
+          Start a project
+          <span aria-hidden="true">→</span>
+        </a>
+        <a href="/about#process" class="inline-flex items-center gap-2 rounded-full border border-[#fefae0]/70 px-6 py-3 text-sm font-semibold text-[#fefae0] transition hover:bg-[#c68d58]">
+          View process
+          <span aria-hidden="true">→</span>
+        </a>
+      </div>
+    </div>
+  </section>
+
+  <script is:inline>
+    (() => {
+      const searchInput = document.querySelector("#productSearch");
+      const productCards = Array.from(document.querySelectorAll("#productGrid article"));
+      const productCount = document.querySelector("#productCount");
+      const filterButtons = document.querySelectorAll("[data-filter]");
+
+      const updateButtonState = (button, isActive) => {
+        if (isActive) {
+          button.classList.add("bg-[#d4a373]", "text-white");
+          button.classList.remove("text-[#d4a373]");
+        } else {
+          button.classList.remove("bg-[#d4a373]", "text-white");
+          button.classList.add("text-[#d4a373]");
+        }
+      };
+
+      const applyFilters = () => {
+        const term = (searchInput?.value || "").trim().toLowerCase();
+        const activeFilters = Array.from(filterButtons)
+          .filter((btn) => btn.dataset.active === "true")
+          .map((btn) => btn.dataset.filter || "");
+
+        let visibleCount = 0;
+        productCards.forEach((card) => {
+          const cardText = card.textContent?.toLowerCase() || "";
+          const tagList = (card.dataset.tags || "").split(" ");
+          const matchesTerm = !term || cardText.includes(term);
+          const matchesFilter = activeFilters.length === 0 || activeFilters.some((filter) => tagList.includes(filter));
+
+          if (matchesTerm && matchesFilter) {
+            card.classList.remove("hidden");
+            visibleCount += 1;
+          } else {
+            card.classList.add("hidden");
+          }
+        });
+
+        if (productCount) {
+          productCount.textContent = `${visibleCount} fabrics curated`;
+        }
+      };
+
+      searchInput?.addEventListener("input", applyFilters);
+
+      filterButtons.forEach((button) => {
+        button.dataset.active = "false";
+        button.addEventListener("click", () => {
+          const nextState = button.dataset.active === "true" ? "false" : "true";
+          button.dataset.active = nextState;
+          updateButtonState(button, nextState === "true");
+          applyFilters();
+        });
+      });
+
+      applyFilters();
+    })();
+  </script>
+</Layout>

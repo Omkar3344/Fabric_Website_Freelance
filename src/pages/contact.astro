@@ -1,0 +1,176 @@
+---
+import Layout from "../layouts/Layout.astro";
+
+const structuredData = {
+  "@context": "https://schema.org",
+  "@type": "LocalBusiness",
+  name: "Fabric Loom Showroom",
+  image: "/assets/hero/fabric-loom-hero.jpg",
+  telephone: "+91-98765-43210",
+  email: "hello@fabricloom.com",
+  address: {
+    "@type": "PostalAddress",
+    streetAddress: "12 Textile Avenue, Lado Sarai",
+    addressLocality: "New Delhi",
+    addressRegion: "DL",
+    postalCode: "110030",
+    addressCountry: "IN",
+  },
+  openingHours: "Mo-Sa 09:30-19:30",
+  url: "https://fabricloom.example.com/contact",
+};
+---
+
+<Layout
+  title="Contact Fabric Loom | Book Consultations and Swatch Requests"
+  description="Connect with Fabric Loom’s sourcing team for fabric consultations, swatch requests, bespoke projects, and showroom visits."
+  structuredData={structuredData}
+>
+  <section class="section-block bg-[#fefae0]" data-animate data-align="top">
+    <div class="section-content md:grid-cols-[1fr_1.1fr] md:items-start">
+      <div class="space-y-4 max-w-2xl">
+        <h1 class="text-4xl font-semibold text-slate-900">Let’s craft something exceptional together</h1>
+        <p class="max-w-3xl text-sm text-slate-700">
+          Share your project details and our textile specialists will respond within one business day. Visit our Delhi showroom or schedule a virtual walkthrough from anywhere in the world.
+        </p>
+      </div>
+  <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3 md:max-w-2xl md:justify-self-end">
+        <article class="space-y-2 rounded-3xl bg-white/80 p-6">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-[#d4a373]">Call us</h2>
+          <p class="text-lg font-semibold text-slate-900">+91 98765 43210</p>
+          <p class="text-xs text-slate-500">Mon – Sat · 9:30 AM – 7:30 PM IST</p>
+        </article>
+        <article class="space-y-2 rounded-3xl bg-white/80 p-6">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-[#d4a373]">Write to us</h2>
+          <p class="text-lg font-semibold text-slate-900">hello@fabricloom.com</p>
+          <p class="text-xs text-slate-500">Send line sheets, design briefs, or collaboration ideas.</p>
+        </article>
+        <article class="space-y-2 rounded-3xl bg-white/80 p-6">
+          <h2 class="text-sm font-semibold uppercase tracking-wide text-[#d4a373]">Visit</h2>
+          <p class="text-lg font-semibold text-slate-900">Fabric Loom Experience Studio</p>
+          <p class="text-xs text-slate-500">12 Textile Avenue, Lado Sarai, New Delhi</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section id="consult" class="section-block bg-white" data-animate data-align="top">
+    <div class="section-content md:grid-cols-[1.1fr_0.9fr] md:items-start">
+      <form class="space-y-5 rounded-3xl bg-white p-8 shadow-sm" aria-label="Send a message to Fabric Loom">
+        <h2 class="text-2xl font-semibold text-slate-900">Project consultation form</h2>
+        <p class="text-sm text-slate-600">Tell us about your vision. We’ll curate a tailored fabric deck.</p>
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="space-y-2 text-sm text-slate-600">
+            <span class="font-semibold">Full name*</span>
+            <input type="text" name="name" required class="w-full rounded-md border border-[#e9edc9] bg-[#fefae0]/60 px-4 py-3 text-sm text-slate-800 focus:border-[#d4a373] focus:outline-none focus:ring-2 focus:ring-[#d4a373]/40" />
+          </label>
+          <label class="space-y-2 text-sm text-slate-600">
+            <span class="font-semibold">Company / Brand</span>
+            <input type="text" name="company" class="w-full rounded-md border border-[#e9edc9] bg-[#fefae0]/60 px-4 py-3 text-sm text-slate-800 focus:border-[#d4a373] focus:outline-none focus:ring-2 focus:ring-[#d4a373]/40" />
+          </label>
+        </div>
+        <div class="grid gap-4 md:grid-cols-2">
+          <label class="space-y-2 text-sm text-slate-600">
+            <span class="font-semibold">Email*</span>
+            <input type="email" name="email" required class="w-full rounded-md border border-[#e9edc9] bg-[#fefae0]/60 px-4 py-3 text-sm text-slate-800 focus:border-[#d4a373] focus:outline-none focus:ring-2 focus:ring-[#d4a373]/40" />
+          </label>
+          <label class="space-y-2 text-sm text-slate-600">
+            <span class="font-semibold">Phone*</span>
+            <input type="tel" name="phone" required class="w-full rounded-md border border-[#e9edc9] bg-[#fefae0]/60 px-4 py-3 text-sm text-slate-800 focus:border-[#d4a373] focus:outline-none focus:ring-2 focus:ring-[#d4a373]/40" />
+          </label>
+        </div>
+        <label class="space-y-2 text-sm text-slate-600">
+          <span class="font-semibold">What kind of fabrics are you exploring?*</span>
+          <select name="category" required class="w-full rounded-md border border-[#e9edc9] bg-[#fefae0]/60 px-4 py-3 text-sm text-slate-800 focus:border-[#d4a373] focus:outline-none focus:ring-2 focus:ring-[#d4a373]/40">
+            <option value="">Select an option</option>
+            <option value="sweaters">Sweaters and knits</option>
+            <option value="casuals">Casual cottons and linens</option>
+            <option value="traditionals">Traditional silks and brocades</option>
+            <option value="embroidery">Embroidery panels</option>
+            <option value="seasonal">Seasonal edits</option>
+            <option value="bespoke">Bespoke development</option>
+          </select>
+        </label>
+        <label class="space-y-2 text-sm text-slate-600">
+          <span class="font-semibold">Project details*</span>
+          <textarea
+            name="details"
+            required
+            rows="5"
+            placeholder="Share quantities, deadlines, target price range, or references."
+            class="w-full rounded-md border border-[#e9edc9] bg-[#fefae0]/60 px-4 py-3 text-sm text-slate-800 focus:border-[#d4a373] focus:outline-none focus:ring-2 focus:ring-[#d4a373]/40"
+          ></textarea>
+        </label>
+        <div class="flex items-center gap-3">
+          <input id="nda" type="checkbox" class="h-4 w-4 rounded border-[#d4a373] text-[#d4a373] focus:ring-[#d4a373]" />
+          <label for="nda" class="text-xs text-slate-600">I’d like to sign a mutual NDA before sharing references.</label>
+        </div>
+        <button type="submit" class="inline-flex w-full items-center justify-center gap-2 rounded-full bg-[#d4a373] px-6 py-3 text-sm font-semibold text-[#fefae0] transition hover:bg-[#c68d58]">
+          Send request
+          <span aria-hidden="true">→</span>
+        </button>
+      </form>
+      <div class="space-y-8 rounded-3xl bg-[#fefae0]/70 p-8 shadow-sm">
+        <section class="space-y-3">
+          <h2 class="text-2xl font-semibold text-slate-900">Showroom hours</h2>
+          <p class="text-sm text-slate-600">Monday – Saturday · 9:30 AM to 7:30 PM IST</p>
+          <p class="text-sm text-slate-600">Walk-ins welcome. Appointments recommended for designer consultations.</p>
+        </section>
+        <section id="showroom" class="space-y-3">
+          <h2 class="text-2xl font-semibold text-slate-900">Visit our experience studio</h2>
+          <p class="text-sm text-slate-600">
+            12 Textile Avenue, Lado Sarai, New Delhi 110030. Landmark: Opposite Garden View Residency.
+          </p>
+          <div class="overflow-hidden rounded-2xl border border-[#e9edc9]">
+            <iframe
+              title="Fabric Loom Showroom Map"
+              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3503.375154978635!2d77.191!3d28.552!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zMjjCsDMzJzA3LjIiTiA3N8KwMTEnMjcuNiJF!5e0!3m2!1sen!2sin!4v1670000000000"
+              width="100%"
+              height="260"
+              loading="lazy"
+              style="border:0;"
+              referrerpolicy="no-referrer-when-downgrade"
+              allowfullscreen
+            ></iframe>
+          </div>
+        </section>
+        <section class="space-y-3">
+          <h2 class="text-2xl font-semibold text-slate-900">International buyers</h2>
+          <p class="text-sm text-slate-600">
+            Virtual walkthroughs available across time zones. We ship swatches via express couriers with tracking and custom documentation assistance.
+          </p>
+          <a href="mailto:export@fabricloom.com" class="inline-flex items-center gap-2 text-sm font-semibold text-[#d4a373] transition hover:text-[#c68d58]">
+            export@fabricloom.com
+            <span aria-hidden="true">→</span>
+          </a>
+        </section>
+      </div>
+    </div>
+  </section>
+
+  <section class="section-block bg-white" data-animate data-align="top">
+    <div class="section-content">
+      <h2 class="text-2xl font-semibold text-slate-900">Frequently asked questions</h2>
+  <div class="space-y-4 text-sm text-slate-600">
+  <details class="rounded-3xl bg-[#fefae0]/70 p-5">
+          <summary class="cursor-pointer text-sm font-semibold text-slate-800">What are your minimum order quantities?</summary>
+          <p class="mt-3 text-sm text-slate-600">
+            Standard fabrics start at 20 meters per colour. Bespoke developments begin at 100 meters. We also offer designer studio cuts and panels—talk to us for limited yardage needs.
+          </p>
+        </details>
+  <details class="rounded-3xl bg-[#fefae0]/70 p-5">
+          <summary class="cursor-pointer text-sm font-semibold text-slate-800">Do you ship internationally?</summary>
+          <p class="mt-3 text-sm text-slate-600">
+            Yes. We handle CIF, FOB, and DDP shipments with partners across Europe, Middle East, North America, and Southeast Asia.
+          </p>
+        </details>
+  <details class="rounded-3xl bg-[#fefae0]/70 p-5">
+          <summary class="cursor-pointer text-sm font-semibold text-slate-800">Can you develop exclusive fabrics?</summary>
+          <p class="mt-3 text-sm text-slate-600">
+            Absolutely. Share mood boards, sketches, or reference garments. Our design lab will prototype weaves, embellishments, and colourways tailored to your brand DNA.
+          </p>
+        </details>
+      </div>
+    </div>
+  </section>
+</Layout>

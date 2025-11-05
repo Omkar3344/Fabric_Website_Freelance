@@ -1,0 +1,283 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { Image } from "astro:assets";
+import heroBackground from "../assets/susan-wilkinson-zp6wHVSm-0c-unsplash.jpg";
+import categorySweatersImage from "../assets/moonstarious-project-R2Z3xE7nsB8-unsplash.jpg";
+import categoryCasualsImage from "../assets/jametlene-reskp-3QZU7cLGB50-unsplash.jpg";
+import categoryTraditionalsImage from "../assets/victor-volkov-kwpJY3RbObo-unsplash.jpg";
+import categoryEmbroideryImage from "../assets/ekaterina-grosheva-wgRD0Lfe43Q-unsplash.jpg";
+
+const structuredData = {
+	"@context": "https://schema.org",
+	"@type": "Organization",
+	name: "Fabric Loom",
+	url: "https://fabricloom.example.com/",
+	logo: heroBackground.src,
+	description:
+		"Fabric Loom curates premium textiles for couture, celebrations, casual wear, and interiors.",
+	contactPoint: [
+		{
+			"@type": "ContactPoint",
+			telephone: "+91-98765-43210",
+			contactType: "customer service",
+			areaServed: "IN",
+			availableLanguage: ["English", "Hindi"],
+		},
+	],
+};
+
+const stats = [
+	{ label: "Weaves perfected", value: "120+" },
+	{ label: "Artisan partners", value: "85" },
+	{ label: "Countries served", value: "18" },
+];
+
+const categories = [
+	{
+		slug: "sweaters",
+		title: "Sweater Knits",
+		description:
+			"Merino, cashmere, and alpaca blends with impeccable drape and warmth.",
+		image: categorySweatersImage,
+		alt: "Soft knitted fabrics in pastel tones neatly folded.",
+	},
+	{
+		slug: "casuals",
+		title: "Casual Cottons",
+		description:
+			"Handloom cottons and breathable blends for effortless, everyday style.",
+		image: categoryCasualsImage,
+		alt: "Bolts of cotton fabric displayed inside a textile boutique.",
+	},
+	{
+		slug: "traditionals",
+		title: "Heritage Silks",
+		description:
+			"Banarasi, Kanchipuram, and bespoke brocades for bridal couture.",
+		image: categoryTraditionalsImage,
+		alt: "Rich silk fabrics stacked in a vibrant color story.",
+	},
+	{
+		slug: "embroidery",
+		title: "Artisanal Embroidery",
+		description:
+			"Hand-embellished panels, zardozi, and sequinned tulle for statement looks.",
+		image: categoryEmbroideryImage,
+		alt: "Intricate embroidered textile with shimmering beadwork.",
+	},
+];
+
+---
+
+<Layout
+	title="Fabric Loom Hey, Cortana. Hey, Cortana.or Every Occasion"
+	description="Experience designer textiles crafted by expert artisans—sweaters, casuals, traditionals, embroidered panels, and seasonal capsules."
+	structuredData={structuredData}
+>
+	<section
+		id="hero"
+		class="section-block -mt-15 overflow-hidden bg-cover bg-center text-[#fefae0]"
+		data-animate
+		data-align="top"
+		style={`background-image: url(${heroBackground.src});`}
+	>
+		<div class="absolute inset-0 bg-linear-to-r from-black/70 via-black/50 to-black/20" aria-hidden="true"></div>
+		<div class="section-content relative z-10 max-w-4xl">
+			<div class="space-y-8">
+				<span class="inline-flex items-center gap-2 rounded-full bg-[#fefae0]/90 px-5 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-[#8d6a43] shadow-sm backdrop-blur">
+					FINE TEXTILES · EST. 1998
+				</span>
+				<div class="space-y-5">
+					<h1 class="text-4xl font-semibold tracking-tight md:text-5xl">
+						Crafted fabrics that elevate every moment—from intimate celebrations to effortless everyday wear.
+					</h1>
+					<p class="max-w-2xl text-lg text-[#fefae0]/85">
+						Fabric Loom partners with master weavers, dyers, and embroiderers across India to deliver curated collections for designers, ateliers, and premium retailers worldwide.
+					</p>
+				</div>
+				<div class="flex flex-wrap gap-4">
+					<a
+						href="/products"
+						class="inline-flex items-center gap-2 rounded-full bg-[#d4a373] px-6 py-3 text-sm font-semibold text-[#fefae0] transition hover:bg-[#c68d58]"
+					>
+						Explore fabrics
+						<span aria-hidden="true">→</span>
+					</a>
+					<a
+						href="/about"
+						class="inline-flex items-center gap-2 rounded-full border border-[#d4a373] px-6 py-3 text-sm font-semibold text-[#d4a373] transition hover:bg-[#faedcd]"
+					>
+						Meet our artisans
+						<span aria-hidden="true">→</span>
+					</a>
+				</div>
+				<div class="grid gap-6 sm:grid-cols-3">
+					{stats.map((item) => (
+						<div class="space-y-1" data-stat-label={item.label}>
+							<span class="text-3xl font-semibold text-[#d4a373]">{item.value}</span>
+							<span class="block text-xs font-medium uppercase tracking-wide text-[#fefae0]/80">{item.label}</span>
+						</div>
+					))}
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section id="collections" class="section-block bg-[#faedcd]" data-animate data-align="top">
+		<div class="section-content">
+			<div class="flex flex-wrap items-end justify-between gap-6">
+				<div class="max-w-2xl space-y-3">
+					<h2 class="text-3xl font-semibold text-slate-900">Signature fabric families</h2>
+					<p class="text-sm text-slate-600">
+						Discover curated edits across silhouettes, yarn blends, and embellishment techniques—ready to translate into garments, accessories, and home collections.
+					</p>
+				</div>
+				<a
+					href="/products#filters"
+					class="inline-flex items-center gap-2 text-sm font-semibold text-[#d4a373] transition hover:text-[#c68d58]"
+				>
+					Browse full catalogue
+					<span aria-hidden="true">→</span>
+				</a>
+			</div>
+			<div class="grid gap-12 md:grid-cols-2">
+				{categories.map((category) => (
+					<article id={`category-${category.slug}`} class="space-y-5">
+						<div class="relative h-64 overflow-hidden rounded-3xl">
+							<Image
+								src={category.image}
+								alt={category.alt}
+								widths={[480, 720, 960, 1280]}
+								sizes="(min-width: 768px) 40vw, 90vw"
+								class="h-full w-full object-cover transition duration-700 hover:scale-105"
+								loading="lazy"
+								decoding="async"
+								fit="cover"
+							/>
+							<div class="pointer-events-none absolute inset-0 bg-linear-to-br from-transparent via-black/10 to-black/40"></div>
+						</div>
+						<div class="space-y-3">
+							<h3 class="text-xl font-semibold text-slate-900">{category.title}</h3>
+							<p class="text-sm leading-relaxed text-slate-600">{category.description}</p>
+							<a
+								href={`/products#category-${category.slug}`}
+								class="inline-flex items-center gap-2 text-sm font-semibold text-[#d4a373] transition hover:text-[#c68d58]"
+							>
+								View swatches
+								<span aria-hidden="true">→</span>
+							</a>
+						</div>
+					</article>
+				))}
+			</div>
+		</div>
+	</section>
+
+
+	<section id="process" class="section-block bg-[#e9edc9]" data-animate data-align="top">
+		<div class="section-content">
+			<div class="space-y-8">
+				<div class="space-y-5">
+					<h2 class="text-3xl font-semibold text-slate-900">Every fabric begins with a story</h2>
+					<p class="text-sm text-slate-600">
+						Our in-house fabric curators travel through textile clusters—Kutch, Varanasi, Erode, Srinagar—to co-create premium fibres and finishes that align with modern silhouettes while honouring craft traditions.
+					</p>
+					<ul class="space-y-3 text-sm text-slate-600">
+						<li class="flex items-start gap-3">
+							<span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-[#d4a373]"></span>
+							Fibre sourcing from eco-certified farms and mills with transparent traceability.
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-[#d4a373]"></span>
+							Lab dips, weave structures, and embellishment tests conducted at our design lab.
+						</li>
+						<li class="flex items-start gap-3">
+							<span class="mt-1 inline-flex h-2.5 w-2.5 rounded-full bg-[#d4a373]"></span>
+							Premium finishing for drape, shine, and longevity with global compliance benchmarks.
+						</li>
+					</ul>
+				</div>
+				<div class="grid gap-6 md:grid-cols-3">
+					<article class="space-y-3 rounded-3xl bg-[#e9edc9]/70 p-6">
+						<h3 class="text-lg font-semibold text-slate-900">Design ateliers</h3>
+						<p class="text-sm text-slate-600">
+							Get mood boards, palette forecasts, and loom-ready swatches within 72 hours. Project-based NDAs and exclusive yardage allocation available.
+						</p>
+					</article>
+					<article class="space-y-3 rounded-3xl bg-[#fefae0] p-6">
+						<h3 class="text-lg font-semibold text-slate-900">Production partners</h3>
+						<p class="text-sm text-slate-600">
+							QC protocols with 10-point inspection—pilling, colourfastness, shrinkage, and tensile strength—to ensure globally exportable fabrics.
+						</p>
+					</article>
+					<article class="space-y-3 rounded-3xl bg-[#faedcd] p-6">
+						<h3 class="text-lg font-semibold text-slate-900">Boutiques & retailers</h3>
+						<p class="text-sm text-slate-600">
+							Smaller MOQs with custom packaging, shelf-ready labelling, and merchandising support kits for trunk shows.
+						</p>
+					</article>
+				</div>
+			</div>
+		</div>
+	</section>
+
+	<section class="section-block bg-[#fefae0]" data-animate>
+		<div class="section-content md:grid-cols-[0.85fr_1.15fr] md:items-start">
+			<div class="space-y-4">
+				<h2 class="text-3xl font-semibold text-slate-900">Trusted by designers worldwide</h2>
+				<p class="text-sm text-slate-600">
+					From independent ateliers in Delhi to global fashion houses in Paris, our clients rely on Fabric Loom for concept-to-production support.
+				</p>
+				<a href="/contact#consult" class="inline-flex items-center gap-2 text-sm font-semibold text-[#d4a373] transition hover:text-[#c68d58]">
+					Request client portfolio
+					<span aria-hidden="true">→</span>
+				</a>
+			</div>
+			<div class="space-y-8">
+				<blockquote class="space-y-4 border-l-4 border-[#d4a373] pl-6 text-sm text-slate-700">
+					<p>
+						“Every season, Fabric Loom translates our moodboard into textiles that feel couture-ready. Their embroidery panels rival the best luxury maisons we have worked with.”
+					</p>
+					<footer class="flex items-center gap-3 text-xs uppercase tracking-wide text-slate-500">
+						<span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#d4a373]/80 text-[#fefae0]">RS</span>
+						Riya Sharma, Creative Director, Atelier Riya
+					</footer>
+				</blockquote>
+				<blockquote class="space-y-4 border-l-4 border-[#d4a373] pl-6 text-sm text-slate-700">
+					<p>
+						“Their sustainability documentation is transparent, and the lead times are reliable. Our European buyers love the hand-feel and finishing details.”
+					</p>
+					<footer class="flex items-center gap-3 text-xs uppercase tracking-wide text-slate-500">
+						<span class="inline-flex h-8 w-8 items-center justify-center rounded-full bg-[#d4a373]/80 text-[#fefae0]">LG</span>
+						Louise Girard, Head Buyer, Maison Solene
+					</footer>
+				</blockquote>
+			</div>
+		</div>
+	</section>
+
+	<section class="section-block bg-[#d4a373] text-[#fefae0]" data-animate>
+		<div class="section-content items-center text-center">
+			<h2 class="text-3xl font-semibold">Let’s develop your next fabric story</h2>
+			<p class="mx-auto max-w-2xl text-sm text-[#fefae0]/80">
+				Schedule a digital walkthrough or an in-showroom appointment to explore swatches, finishing options, and exclusive collaborations.
+			</p>
+			<div class="flex flex-wrap justify-center gap-4">
+				<a
+					href="/contact#consult"
+					class="inline-flex items-center gap-2 rounded-full bg-[#fefae0] px-6 py-3 text-sm font-semibold text-[#8d6a43] transition hover:bg-[#faedcd]"
+				>
+					Schedule consultation
+					<span aria-hidden="true">→</span>
+				</a>
+				<a
+					href="/products"
+					class="inline-flex items-center gap-2 rounded-full border border-[#fefae0]/70 px-6 py-3 text-sm font-semibold text-[#fefae0] transition hover:bg-[#c68d58]"
+				>
+					Download fabric list
+					<span aria-hidden="true">→</span>
+				</a>
+			</div>
+		</div>
+	</section>
+</Layout>
