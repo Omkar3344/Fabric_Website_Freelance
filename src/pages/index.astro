@@ -125,7 +125,7 @@ const categories = [
 
 	<section id="collections" class="section-block bg-[#faedcd]" data-animate data-align="top">
 		<div class="section-content">
-			<div class="flex flex-wrap items-end justify-between gap-6">
+			<div class="flex flex-wrap items-end justify-between gap-6 mb-8">
 				<div class="max-w-2xl space-y-3">
 					<h2 class="text-3xl font-semibold text-slate-900">Signature fabric families</h2>
 					<p class="text-sm text-slate-600">
@@ -140,7 +140,7 @@ const categories = [
 					<span aria-hidden="true">→</span>
 				</a>
 			</div>
-			<div class="grid gap-12 md:grid-cols-2">
+			<div class="grid gap-8 sm:grid-cols-1 md:grid-cols-2">
 				{categories.map((category) => (
 					<article id={`category-${category.slug}`} class="space-y-5">
 						<div class="relative h-64 overflow-hidden rounded-3xl">
@@ -197,22 +197,22 @@ const categories = [
 						</li>
 					</ul>
 				</div>
-				<div class="grid gap-6 md:grid-cols-3">
-					<article class="space-y-3 rounded-3xl bg-[#e9edc9]/70 p-6">
+				<div class="grid gap-6 sm:grid-cols-1 md:grid-cols-3">
+					<article class="space-y-3 rounded-3xl bg-white/70 backdrop-blur-sm p-6 border border-[#e9edc9]">
 						<h3 class="text-lg font-semibold text-slate-900">Design ateliers</h3>
-						<p class="text-sm text-slate-600">
+						<p class="text-sm leading-relaxed text-slate-600">
 							Get mood boards, palette forecasts, and loom-ready swatches within 72 hours. Project-based NDAs and exclusive yardage allocation available.
 						</p>
 					</article>
-					<article class="space-y-3 rounded-3xl bg-[#fefae0] p-6">
+					<article class="space-y-3 rounded-3xl bg-white/70 backdrop-blur-sm p-6 border border-[#e9edc9]">
 						<h3 class="text-lg font-semibold text-slate-900">Production partners</h3>
-						<p class="text-sm text-slate-600">
+						<p class="text-sm leading-relaxed text-slate-600">
 							QC protocols with 10-point inspection—pilling, colourfastness, shrinkage, and tensile strength—to ensure globally exportable fabrics.
 						</p>
 					</article>
-					<article class="space-y-3 rounded-3xl bg-[#faedcd] p-6">
+					<article class="space-y-3 rounded-3xl bg-white/70 backdrop-blur-sm p-6 border border-[#e9edc9]">
 						<h3 class="text-lg font-semibold text-slate-900">Boutiques & retailers</h3>
-						<p class="text-sm text-slate-600">
+						<p class="text-sm leading-relaxed text-slate-600">
 							Smaller MOQs with custom packaging, shelf-ready labelling, and merchandising support kits for trunk shows.
 						</p>
 					</article>
@@ -222,8 +222,8 @@ const categories = [
 	</section>
 
 	<section class="section-block bg-[#fefae0]" data-animate>
-		<div class="section-content md:grid-cols-[0.85fr_1.15fr] md:items-start">
-			<div class="space-y-4">
+		<div class="section-content">
+			<div class="space-y-4 max-w-2xl">
 				<h2 class="text-3xl font-semibold text-slate-900">Trusted by designers worldwide</h2>
 				<p class="text-sm text-slate-600">
 					From independent ateliers in Delhi to global fashion houses in Paris, our clients rely on Fabric Loom for concept-to-production support.
@@ -233,7 +233,7 @@ const categories = [
 					<span aria-hidden="true">→</span>
 				</a>
 			</div>
-			<div class="space-y-8">
+			<div class="grid gap-6 sm:grid-cols-1 md:grid-cols-2">
 				<blockquote class="space-y-4 border-l-4 border-[#d4a373] pl-6 text-sm text-slate-700">
 					<p>
 						“Every season, Fabric Loom translates our moodboard into textiles that feel couture-ready. Their embroidery panels rival the best luxury maisons we have worked with.”
@@ -257,12 +257,14 @@ const categories = [
 	</section>
 
 	<section class="section-block bg-[#ccd5ae] text-slate-900" data-animate>
-		<div class="section-content items-center text-center">
-			<h2 class="text-3xl font-semibold">Let’s develop your next fabric story</h2>
-			<p class="mx-auto max-w-2xl text-sm text-slate-700">
-				Schedule a digital walkthrough or an in-showroom appointment to explore swatches, finishing options, and exclusive collaborations.
-			</p>
-			<div class="flex flex-wrap justify-center gap-4">
+		<div class="section-content text-center">
+			<div class="space-y-6 max-w-3xl mx-auto">
+				<h2 class="text-3xl font-semibold">Let's develop your next fabric story</h2>
+				<p class="text-sm leading-relaxed text-slate-700">
+					Schedule a digital walkthrough or an in-showroom appointment to explore swatches, finishing options, and exclusive collaborations.
+				</p>
+			</div>
+			<div class="flex flex-wrap justify-center gap-4 mt-8">
 				<a
 					href="/contact#consult"
 					class="inline-flex items-center gap-2 rounded-full bg-[#d4a373] px-6 py-3 text-sm font-semibold text-[#fefae0] transition hover:bg-[#c68d58]"

@@ -18,12 +18,12 @@
 	}
 
 	:root {
-		--header-height: 2.75rem;
+		--header-height: 4.5rem;
 	}
 
 	@media (min-width: 48rem) {
 		:root {
-			--header-height: 4.5rem;
+			--header-height: 3.75rem;
 		}
 	}
 
@@ -84,8 +84,11 @@
 
 	.site-header-inner {
 		min-height: var(--header-height);
-		padding-block: clamp(0.45rem, 1.5vw, 0.85rem);
+		height: var(--header-height);
+		padding-block: 0;
 		box-sizing: border-box;
+		display: flex;
+		align-items: center;
 	}
 
 	/* Logo styling */
@@ -139,7 +142,12 @@
 	}
 
 	.section-block:first-of-type {
-		padding-top: clamp(3.25rem, 6vw, 5.5rem);
+		margin-top: calc(var(--header-height) * -1);
+		padding-top: var(--header-height);
+	}
+
+	.section-block:first-of-type[data-align="top"] {
+		padding-top: calc(var(--header-height) + clamp(4.5rem, 7vw, 7rem));
 	}
 
 	.section-content {
@@ -147,7 +155,63 @@
 		margin-left: auto;
 		margin-right: auto;
 		display: grid;
-		gap: clamp(2rem, 3vw, 3rem);
+		gap: clamp(2.5rem, 4vw, 4rem);
+		width: 100%;
+	}
+
+	/* Proper grid layouts for different content types */
+	.section-content.md\:grid-cols-2 {
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 48rem) {
+		.section-content.md\:grid-cols-2 {
+			grid-template-columns: repeat(2, 1fr);
+		}
+	}
+
+	.section-content.md\:grid-cols-3 {
+		grid-template-columns: 1fr;
+	}
+
+	@media (min-width: 48rem) {
+		.section-content.md\:grid-cols-3 {
+			grid-template-columns: repeat(3, 1fr);
+		}
+	}
+
+	/* Card styling for better alignment and consistency */
+	.section-content article,
+	.section-content > div > article {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+	}
+
+	/* Ensure proper spacing in card grids */
+	.grid {
+		display: grid;
+		gap: clamp(1.5rem, 3vw, 2rem);
+	}
+
+	.grid.gap-4 {
+		gap: 1rem;
+	}
+
+	.grid.gap-6 {
+		gap: 1.5rem;
+	}
+
+	.grid.gap-8 {
+		gap: 2rem;
+	}
+
+	.grid.gap-10 {
+		gap: 2.5rem;
+	}
+
+	.grid.gap-12 {
+		gap: 3rem;
 	}
 
 	[data-animate] {
@@ -296,6 +360,206 @@
 
 	#mobile-menu nav a.active::before {
 		height: 70%;
+	}
+
+	/* Card styling improvements for better alignment */
+	article.space-y-2,
+	article.space-y-3,
+	article.space-y-4,
+	article.space-y-5 {
+		display: flex;
+		flex-direction: column;
+		height: 100%;
+		box-sizing: border-box;
+	}
+
+	/* Ensure rounded cards have proper background and padding */
+	.rounded-3xl {
+		border-radius: 1.5rem;
+		background-clip: padding-box;
+	}
+
+	.rounded-2xl {
+		border-radius: 1rem;
+	}
+
+	.rounded-full {
+		border-radius: 9999px;
+	}
+
+	/* Better text color hierarchy */
+	.text-slate-900 {
+		color: #0f172a;
+	}
+
+	.text-slate-800 {
+		color: #1e293b;
+	}
+
+	.text-slate-700 {
+		color: #334155;
+	}
+
+	.text-slate-600 {
+		color: #475569;
+	}
+
+	.text-slate-500 {
+		color: #64748b;
+	}
+
+	/* Background colors for consistency */
+	.bg-white\/80 {
+		background-color: rgba(255, 255, 255, 0.8);
+	}
+
+	.bg-\[\#fefae0\]\/70 {
+		background-color: rgba(254, 250, 224, 0.7);
+	}
+
+	.bg-\[\#fefae0\]\/80 {
+		background-color: rgba(254, 250, 224, 0.8);
+	}
+
+	.bg-\[\#e9edc9\]\/70 {
+		background-color: rgba(233, 237, 201, 0.7);
+	}
+
+	/* Ensure proper spacing for multi-column layouts */
+	@media (min-width: 48rem) {
+		.md\:grid-cols-2 {
+			grid-template-columns: repeat(2, 1fr);
+		}
+
+		.md\:grid-cols-3 {
+			grid-template-columns: repeat(3, 1fr);
+		}
+
+		.md\:grid-cols-\[1fr_1fr\] {
+			grid-template-columns: 1fr 1fr;
+		}
+
+		.md\:grid-cols-\[1\.2fr_0\.8fr\] {
+			grid-template-columns: 1.2fr 0.8fr;
+		}
+
+		.md\:grid-cols-\[1fr_0\.9fr\] {
+			grid-template-columns: 1fr 0.9fr;
+		}
+
+		.md\:grid-cols-\[1\.1fr_0\.9fr\] {
+			grid-template-columns: 1.1fr 0.9fr;
+		}
+
+		.md\:grid-cols-\[1\.05fr_0\.95fr\] {
+			grid-template-columns: 1.05fr 0.95fr;
+		}
+
+		.md\:grid-cols-\[0\.85fr_1\.15fr\] {
+			grid-template-columns: 0.85fr 1.15fr;
+		}
+
+		.md\:grid-cols-\[1fr_1\.1fr\] {
+			grid-template-columns: 1fr 1.1fr;
+		}
+	}
+
+	/* Backdrop blur utilities */
+	.backdrop-blur-sm {
+		backdrop-filter: blur(4px);
+		-webkit-backdrop-filter: blur(4px);
+	}
+
+	.backdrop-blur {
+		backdrop-filter: blur(8px);
+		-webkit-backdrop-filter: blur(8px);
+	}
+
+	.backdrop-blur-md {
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
+	}
+
+	/* Shadow and depth improvements */
+	.shadow-sm {
+		box-shadow: 0 1px 2px 0 rgba(0, 0, 0, 0.05);
+	}
+
+	.shadow {
+		box-shadow: 0 1px 3px 0 rgba(0, 0, 0, 0.1), 0 1px 2px -1px rgba(0, 0, 0, 0.1);
+	}
+
+	.shadow-md {
+		box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -2px rgba(0, 0, 0, 0.1);
+	}
+
+	.shadow-xl {
+		box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 8px 10px -6px rgba(0, 0, 0, 0.1);
+	}
+
+	/* Hover effects for cards */
+	.hover\:-translate-y-1:hover {
+		transform: translateY(-0.25rem);
+	}
+
+	/* Ensure buttons and links have proper spacing */
+	.inline-flex {
+		display: inline-flex;
+		align-items: center;
+	}
+
+	/* Fix for form inputs and selects */
+	input,
+	select,
+	textarea {
+		font-family: inherit;
+		box-sizing: border-box;
+	}
+
+	input:focus,
+	select:focus,
+	textarea:focus {
+		outline: 2px solid transparent;
+		outline-offset: 2px;
+	}
+
+	/* Responsive padding adjustments */
+	@media (max-width: 48rem) {
+		.section-block {
+			padding-inline: clamp(1rem, 5vw, 2rem);
+		}
+
+		.section-content {
+			gap: clamp(1.5rem, 3vw, 2rem);
+		}
+	}
+
+	/* Center content properly */
+	.items-center {
+		align-items: center;
+	}
+
+	.justify-center {
+		justify-content: center;
+	}
+
+	.text-center {
+		text-align: center;
+	}
+
+	/* Ensure images maintain aspect ratio */
+	img {
+		max-width: 100%;
+		height: auto;
+	}
+
+	/* Timeline styling improvements */
+	.border-l {
+		border-left-width: 1px;
+	}
+
+	.pl-6 {
+		padding-left: 1.5rem;
 	}
 
 	@media (prefers-reduced-motion: reduce) {

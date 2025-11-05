@@ -47,24 +47,24 @@ const values = [
   description="Learn how Fabric Loom partners with artisans, designers, and mills to craft world-class fabrics with responsible practices."
 >
   <section class="section-block bg-[#fefae0]" data-animate>
-    <div class="section-content md:grid-cols-[1.2fr_0.8fr] md:items-center">
+    <div class="section-content">
       <div class="space-y-6">
         <h1 class="text-4xl font-semibold text-slate-900 md:text-5xl">Craftsmanship rooted in heritage, driven by innovation.</h1>
         <p class="max-w-3xl text-sm leading-relaxed text-slate-700">
           Fabric Loom began as a small sourcing studio in Delhi with a mission to celebrate Indian textile mastery. Today, we collaborate with hundreds of artisans, textile engineers, and designers to deliver fabrics that balance tradition, modernity, and responsibility.
         </p>
       </div>
-  <div class="grid gap-6 md:max-w-xl md:grid-cols-3 md:justify-self-end">
-        <article class="space-y-2 rounded-3xl bg-white/80 p-6">
-          <h2 class="text-lg font-semibold text-slate-900">400+</h2>
+      <div class="grid gap-6 sm:grid-cols-2 lg:grid-cols-3">
+        <article class="space-y-2 rounded-3xl bg-white/80 p-6 backdrop-blur-sm">
+          <h2 class="text-2xl font-bold text-[#d4a373]">400+</h2>
           <p class="text-sm text-slate-600">Artisans supported through long-term weaving, dyeing, and embroidery partnerships.</p>
         </article>
-        <article class="space-y-2 rounded-3xl bg-white/80 p-6">
-          <h2 class="text-lg font-semibold text-slate-900">72 hrs</h2>
+        <article class="space-y-2 rounded-3xl bg-white/80 p-6 backdrop-blur-sm">
+          <h2 class="text-2xl font-bold text-[#d4a373]">72 hrs</h2>
           <p class="text-sm text-slate-600">Average turnaround for loom-ready sampling and lab dips from design briefs.</p>
         </article>
-        <article class="space-y-2 rounded-3xl bg-white/80 p-6">
-          <h2 class="text-lg font-semibold text-slate-900">65%</h2>
+        <article class="space-y-2 rounded-3xl bg-white/80 p-6 backdrop-blur-sm">
+          <h2 class="text-2xl font-bold text-[#d4a373]">65%</h2>
           <p class="text-sm text-slate-600">Collections produced with traceable, low-impact fibres and eco finishes.</p>
         </article>
       </div>
@@ -119,13 +119,19 @@ const values = [
   </section>
 
   <section id="values" class="section-block bg-white" data-animate data-align="top">
-    <div class="section-content md:grid-cols-3">
-      {values.map((value) => (
-        <article class="space-y-3 rounded-3xl bg-[#fefae0]/80 p-6" data-value={value.title}>
-          <h3 class="text-lg font-semibold text-slate-900">{value.title}</h3>
-          <p class="text-sm text-slate-600">{value.copy}</p>
-        </article>
-      ))}
+    <div class="section-content">
+      <div class="space-y-4">
+        <h2 class="text-3xl font-semibold text-slate-900">Our values</h2>
+        <p class="text-sm text-slate-600 max-w-2xl">The principles that guide every fabric we create and every partnership we forge.</p>
+      </div>
+      <div class="grid gap-6 md:grid-cols-3">
+        {values.map((value) => (
+          <article class="space-y-3 rounded-3xl bg-[#fefae0]/80 p-6 backdrop-blur-sm" data-value={value.title}>
+            <h3 class="text-lg font-semibold text-slate-900">{value.title}</h3>
+            <p class="text-sm leading-relaxed text-slate-600">{value.copy}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
 
