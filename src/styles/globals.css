@@ -11,37 +11,19 @@
 	body {
 		background-color: #fffbf0;
 		overflow-x: clip;
-		/* Mandatory snap for seamless section transitions */
-		scroll-snap-type: y mandatory;
 		/* Enable smooth momentum scrolling on all devices */
 		-webkit-overflow-scrolling: touch;
-		/* Improve scrolling performance */
-		overscroll-behavior-y: none;
 		/* Ensure body takes full height */
 		min-height: 100vh;
 	}
 
-	/* Mobile-specific stricter scroll behavior */
-	@media (max-width: 47.99rem) and (hover: none) {
-		body {
-			scroll-snap-type: y mandatory;
-			/* Prevent momentum bounce */
-			overscroll-behavior: none;
-		}
-		
-		html {
-			/* Prevent any overscroll on mobile */
-			overscroll-behavior: none;
-		}
-	}
-
 	:root {
-		--header-height: 3.5rem;
+		--header-height: 2.75rem;
 	}
 
 	@media (min-width: 48rem) {
 		:root {
-			--header-height: 4.25rem;
+			--header-height: 4.5rem;
 		}
 	}
 
@@ -76,19 +58,24 @@
 		min-height: var(--header-height);
 		display: flex;
 		flex-direction: column;
-		background-color: rgba(255, 255, 255, 0.08);
-		border-color: rgba(255, 255, 255, 0.2);
+		background-color: rgba(58, 47, 38, 0.85);
+		border-color: rgba(212, 163, 115, 0.3);
+		backdrop-filter: blur(12px);
+		-webkit-backdrop-filter: blur(12px);
 		/* Smoother transitions with better easing */
 		transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
 		            border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
-		            transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		            transform 0.3s cubic-bezier(0.4, 0, 0.2, 1),
+		            backdrop-filter 0.4s cubic-bezier(0.4, 0, 0.2, 1);
 		/* GPU acceleration for smoother performance */
-		will-change: transform, background-color;
+		will-change: transform, background-color, backdrop-filter;
 	}
 
 	[data-site-header][data-over-hero="true"] {
-		background-color: transparent;
-		border-color: rgba(255, 255, 255, 0.1);
+		background-color: rgba(0, 0, 0, 0.4);
+		border-color: rgba(255, 255, 255, 0.15);
+		backdrop-filter: blur(16px);
+		-webkit-backdrop-filter: blur(16px);
 	}
 
 	[data-site-header][data-hidden] {
@@ -101,19 +88,27 @@
 		box-sizing: border-box;
 	}
 
+	/* Logo styling */
+	[data-site-header] a img {
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		filter: brightness(0) saturate(100%) invert(94%) sepia(13%) saturate(433%) hue-rotate(346deg) brightness(103%) contrast(98%);
+	}
+
+	[data-site-header] a:hover img {
+		filter: brightness(0) saturate(100%) invert(79%) sepia(23%) saturate(648%) hue-rotate(346deg) brightness(93%) contrast(87%);
+		transform: scale(1.05);
+	}
+
+	[data-site-header][data-over-hero="true"] a img {
+		filter: brightness(0) saturate(100%) invert(100%) sepia(0%) saturate(0%) hue-rotate(0deg) brightness(103%) contrast(103%);
+	}
+
 	main[data-main-shell] {
-		padding-top: 0;
+		padding-top: var(--header-height, 3.5rem);
 	}
 
 	.section-block {
-		position: sticky;
-		top: var(--header-height, 3.5rem);
 		width: 100vw;
-		/* Each section takes exactly one viewport height in document flow for proper spacing */
-		height: 100vh;
-		min-height: 100vh;
-		/* Sticky viewport height - section reveals from bottom */
-		--section-viewport-height: calc(100vh - var(--header-height, 3.5rem));
 		margin-inline: calc(50% - 50vw);
 		margin-block: 0;
 		box-sizing: border-box;
@@ -122,24 +117,11 @@
 		padding-block: clamp(3.25rem, 6vw, 5.5rem);
 		padding-inline: clamp(1.5rem, 6vw, 4rem);
 		overflow: hidden;
-		/* Ensure proper snap alignment at the start of each section */
-		scroll-snap-align: start;
-		scroll-snap-stop: always;
 		/* GPU acceleration for smoother rendering */
 		transform: translateZ(0);
 		backface-visibility: hidden;
 		/* Account for header offset */
 		scroll-margin-top: var(--header-height, 3.5rem);
-	}
-
-	/* Ensure sections stack properly with no gaps */
-	.section-block + .section-block {
-		margin-top: 0;
-	}
-
-	/* Footer should also snap if it's tall enough */
-	footer {
-		scroll-snap-align: start;
 	}
 
 	.section-block[data-align="top"] {
@@ -210,6 +192,110 @@
 	/* Enhanced button and link interactions */
 	a, button {
 		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	/* Professional Navigation Styling */
+	[data-site-header] nav a {
+		position: relative;
+		padding: 0.5rem 0.75rem;
+		font-weight: 500;
+		letter-spacing: 0.02em;
+		color: #fefae0;
+		transition: color 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+	}
+
+	[data-site-header] nav a::after {
+		content: '';
+		position: absolute;
+		bottom: 0;
+		left: 50%;
+		width: 0;
+		height: 2px;
+		background: linear-gradient(90deg, #d4a373, #c68d58);
+		transform: translateX(-50%);
+		transition: width 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 2px;
+	}
+
+	[data-site-header] nav a:hover {
+		color: #d4a373;
+	}
+
+	[data-site-header] nav a:hover::after {
+		width: 100%;
+	}
+
+	/* Active state for current page */
+	[data-site-header] nav a.active {
+		color: #d4a373;
+		font-weight: 600;
+	}
+
+	[data-site-header] nav a.active::after {
+		width: 100%;
+	}
+
+	/* When navbar is over hero (transparent state) */
+	[data-site-header][data-over-hero="true"] nav a {
+		color: rgba(255, 255, 255, 0.95);
+		text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+	}
+
+	[data-site-header][data-over-hero="true"] nav a:hover {
+		color: #fefae0;
+	}
+
+	[data-site-header][data-over-hero="true"] nav a::after {
+		background: linear-gradient(90deg, #fefae0, #d4a373);
+	}
+
+	[data-site-header][data-over-hero="true"] nav a.active {
+		color: #fefae0;
+	}
+
+	/* Mobile navigation styling */
+	#mobile-menu nav a {
+		position: relative;
+		padding: 0.75rem 1rem;
+		font-weight: 500;
+		color: #4a4a4a;
+		border-radius: 0.5rem;
+		transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		overflow: hidden;
+	}
+
+	#mobile-menu nav a::before {
+		content: '';
+		position: absolute;
+		left: 0;
+		top: 50%;
+		width: 3px;
+		height: 0;
+		background: linear-gradient(180deg, #d4a373, #c68d58);
+		transform: translateY(-50%);
+		transition: height 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+		border-radius: 0 2px 2px 0;
+	}
+
+	#mobile-menu nav a:hover {
+		background-color: #faedcd;
+		color: #c68d58;
+		padding-left: 1.25rem;
+	}
+
+	#mobile-menu nav a:hover::before {
+		height: 70%;
+	}
+
+	#mobile-menu nav a.active {
+		background-color: #e9edc9;
+		color: #c68d58;
+		font-weight: 600;
+		padding-left: 1.25rem;
+	}
+
+	#mobile-menu nav a.active::before {
+		height: 70%;
 	}
 
 	@media (prefers-reduced-motion: reduce) {
