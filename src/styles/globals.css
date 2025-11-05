@@ -4,12 +4,33 @@
 	html {
 		height: 100%;
 		scroll-behavior: smooth;
+		/* Enhanced smooth scrolling with custom easing */
+		scroll-padding-top: var(--header-height, 3.5rem);
 	}
 
 	body {
 		background-color: #fffbf0;
 		overflow-x: clip;
-		scroll-snap-type: y mandatory;
+		/* More refined snap behavior - proximity allows smoother free scrolling */
+		scroll-snap-type: y proximity;
+		/* Enable smooth momentum scrolling on all devices */
+		-webkit-overflow-scrolling: touch;
+		/* Improve scrolling performance */
+		overscroll-behavior-y: none;
+	}
+
+	/* Mobile-specific stricter scroll behavior */
+	@media (max-width: 47.99rem) and (hover: none) {
+		body {
+			scroll-snap-type: y mandatory;
+			/* Prevent momentum bounce */
+			overscroll-behavior: none;
+		}
+		
+		html {
+			/* Prevent any overscroll on mobile */
+			overscroll-behavior: none;
+		}
 	}
 
 	:root {
@@ -22,10 +43,30 @@
 		}
 	}
 
-	@supports (-webkit-overflow-scrolling: touch) {
-		body {
-			-webkit-overflow-scrolling: touch;
-		}
+	/* Smooth scrollbar styling for better UX */
+	::-webkit-scrollbar {
+		width: 10px;
+		height: 10px;
+	}
+
+	::-webkit-scrollbar-track {
+		background: #fefae0;
+	}
+
+	::-webkit-scrollbar-thumb {
+		background: #d4a373;
+		border-radius: 5px;
+		transition: background 0.3s ease;
+	}
+
+	::-webkit-scrollbar-thumb:hover {
+		background: #c68d58;
+	}
+
+	/* Firefox scrollbar */
+	* {
+		scrollbar-width: thin;
+		scrollbar-color: #d4a373 #fefae0;
 	}
 
 	[data-site-header] {
@@ -35,7 +76,12 @@
 		flex-direction: column;
 		background-color: rgba(255, 255, 255, 0.08);
 		border-color: rgba(255, 255, 255, 0.2);
-		transition: background-color 0.3s ease, border-color 0.3s ease;
+		/* Smoother transitions with better easing */
+		transition: background-color 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
+		            border-color 0.4s cubic-bezier(0.4, 0, 0.2, 1),
+		            transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+		/* GPU acceleration for smoother performance */
+		will-change: transform, background-color;
 	}
 
 	[data-site-header][data-over-hero="true"] {
@@ -78,7 +124,31 @@
 		padding-inline: clamp(1.5rem, 6vw, 4rem);
 		overflow-y: auto;
 		overflow-x: hidden;
+		/* Softer snap alignment for smoother scrolling */
 		scroll-snap-align: start;
+		scroll-snap-stop: normal;
+		/* Enhanced smooth scrolling within sections */
+		-webkit-overflow-scrolling: touch;
+		/* GPU acceleration for smoother rendering */
+		transform: translateZ(0);
+		backface-visibility: hidden;
+		/* Smoother transition between sections */
+		transition: opacity 0.3s ease-out;
+	}
+
+	/* Mobile-specific section behavior - stricter snapping */
+	@media (max-width: 47.99rem) and (hover: none) {
+		.section-block {
+			scroll-snap-stop: always;
+			/* Prevent momentum scroll from skipping sections */
+			overscroll-behavior-y: contain;
+			overscroll-behavior-x: none;
+			/* Ensure sections are isolated */
+			isolation: isolate;
+			/* Strict positioning */
+			position: -webkit-sticky;
+			position: sticky;
+		}
 	}
 
 	.section-block[data-align="top"] {
@@ -109,20 +179,58 @@
 
 	[data-animate] {
 		opacity: 0;
-		transform: translateY(2.5rem);
+		transform: translateY(2.5rem) translateZ(0);
 		transition-property: opacity, transform;
-		transition-duration: 650ms;
-		transition-timing-function: cubic-bezier(0.22, 1, 0.36, 1);
+		transition-duration: 750ms;
+		/* Smoother, more natural easing curve */
+		transition-timing-function: cubic-bezier(0.16, 1, 0.3, 1);
 		transition-delay: var(--animate-delay, 0ms);
 		will-change: opacity, transform;
+		/* Ensure smooth rendering */
+		backface-visibility: hidden;
 	}
 
 	[data-animate][data-animated] {
 		opacity: 1;
-		transform: translateY(0);
+		transform: translateY(0) translateZ(0);
+	}
+
+	/* Smooth focus styles for keyboard navigation */
+	*:focus-visible {
+		outline: 2px solid #d4a373;
+		outline-offset: 3px;
+		border-radius: 4px;
+		transition: outline-offset 0.2s ease;
+	}
+
+	/* Optimize all transitions for smoothness */
+	* {
+		/* Ensure sub-pixel rendering for smoother text */
+		-webkit-font-smoothing: antialiased;
+		-moz-osx-font-smoothing: grayscale;
+	}
+
+	/* Smooth image loading */
+	img {
+		transform: translateZ(0);
+		backface-visibility: hidden;
+	}
+
+	/* Enhanced button and link interactions */
+	a, button {
+		transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 	}
 
 	@media (prefers-reduced-motion: reduce) {
+		*,
+		*::before,
+		*::after {
+			animation-duration: 0.01ms !important;
+			animation-iteration-count: 1 !important;
+			transition-duration: 0.01ms !important;
+			scroll-behavior: auto !important;
+		}
+
 		[data-animate] {
 			transition-duration: 0.01ms !important;
 			transition-delay: 0ms !important;
