@@ -215,7 +215,6 @@
 	}
 
 	[data-animate] {
-		opacity: 0;
 		transform: translateY(2.5rem) translateZ(0);
 		transition-property: opacity, transform;
 		transition-duration: 750ms;
